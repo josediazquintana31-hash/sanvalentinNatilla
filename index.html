@@ -9,7 +9,7 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, #bfe9ff, #e6f7ff);
+      background: linear-gradient(180deg, #cfefff, #eaf8ff);
       text-align: center;
     }
 
@@ -26,19 +26,18 @@
       border-radius: 25px;
       font-size: 16px;
       cursor: pointer;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
 
     .galeria {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      gap: 12px;
       padding: 15px;
     }
 
     .galeria img {
       width: 100%;
-      height: auto;
       border-radius: 16px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
@@ -73,7 +72,7 @@
       background: #a0aec0;
       color: white;
       position: absolute;
-      top: 60px;
+      top: 70px;
       left: 50%;
       transform: translateX(-50%);
     }
@@ -95,22 +94,22 @@
   <!-- AUDIO -->
   <audio id="musica" src="./musica.mp3" loop></audio>
 
-  <button class="btn-musica" onclick="reproducirMusica()">
+  <button class="btn-musica" onclick="document.getElementById('musica').play()">
     ▶ Reproducir música 💙
   </button>
 
   <div class="galeria">
-    <img src="./fotos/nos1.jpg">
-    <img src="./fotos/nos2.jpg">
-    <img src="./fotos/nos3.jpg">
-    <img src="./fotos/nos4.jpg">
-    <img src="./fotos/nos5.jpg">
-    <img src="./fotos/nos6.jpg">
-    <img src="./fotos/pochacco1.jpg">
-    <img src="./fotos/pochacco2.jpg">
-    <img src="./fotos/pochacco3.jpg">
-    <img src="./fotos/pochacco4.jpg">
-    <img src="./fotos/pochacco5.jpg">
+    <img src="./nos1.jpg">
+    <img src="./nos2.jpg">
+    <img src="./nos3.jpg">
+    <img src="./nos4.jpg">
+    <img src="./nos5.jpg">
+    <img src="./nos6.jpg">
+    <img src="./pochacco1.jpg">
+    <img src="./pochacco2.jpg">
+    <img src="./pochacco3.jpg">
+    <img src="./pochacco4.jpg">
+    <img src="./pochacco5.jpg">
   </div>
 
   <div class="pregunta">
@@ -142,14 +141,10 @@
     ];
     let i = 0;
 
-    function reproducirMusica() {
-      document.getElementById("musica").play();
-    }
-
     function moverNo() {
       const no = document.getElementById("no");
-      no.style.top = Math.random() * 80 + "px";
-      no.style.left = Math.random() * 80 + "px";
+      no.style.top = Math.random() * 90 + "px";
+      no.style.left = Math.random() * 90 + "px";
 
       document.querySelector(".pregunta").innerText =
         frases[i % frases.length];
