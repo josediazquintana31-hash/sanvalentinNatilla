@@ -8,15 +8,14 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       background: linear-gradient(180deg, #bfe9ff, #e6f7ff);
       text-align: center;
-      overflow-x: hidden;
     }
 
     h1 {
       color: #2b6cb0;
-      margin: 20px 10px 10px;
+      margin: 20px 10px;
     }
 
     .btn-musica {
@@ -39,6 +38,7 @@
 
     .galeria img {
       width: 100%;
+      height: auto;
       border-radius: 16px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
@@ -73,8 +73,9 @@
       background: #a0aec0;
       color: white;
       position: absolute;
-      right: 20%;
       top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     .mensaje-final {
@@ -92,24 +93,24 @@
   <h1>Natilla 💙</h1>
 
   <!-- AUDIO -->
-  <audio id="musica" src="musica.mp3" loop></audio>
+  <audio id="musica" src="./musica.mp3" loop></audio>
 
   <button class="btn-musica" onclick="reproducirMusica()">
     ▶ Reproducir música 💙
   </button>
 
   <div class="galeria">
-    <img src="fotos/nos1.jpg">
-    <img src="fotos/nos2.jpg">
-    <img src="fotos/nos3.jpg">
-    <img src="fotos/nos4.jpg">
-    <img src="fotos/nos5.jpg">
-    <img src="fotos/nos6.jpg">
-    <img src="fotos/pochacco1.jpg">
-    <img src="fotos/pochacco2.jpg">
-    <img src="fotos/pochacco3.jpg">
-    <img src="fotos/pochacco4.jpg">
-    <img src="fotos/pochacco5.jpg">
+    <img src="./fotos/nos1.jpg">
+    <img src="./fotos/nos2.jpg">
+    <img src="./fotos/nos3.jpg">
+    <img src="./fotos/nos4.jpg">
+    <img src="./fotos/nos5.jpg">
+    <img src="./fotos/nos6.jpg">
+    <img src="./fotos/pochacco1.jpg">
+    <img src="./fotos/pochacco2.jpg">
+    <img src="./fotos/pochacco3.jpg">
+    <img src="./fotos/pochacco4.jpg">
+    <img src="./fotos/pochacco5.jpg">
   </div>
 
   <div class="pregunta">
