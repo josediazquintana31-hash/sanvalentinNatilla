@@ -6,17 +6,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(180deg, #cfefff, #eaf7ff);
+  font-family: Arial, sans-serif;
   text-align: center;
   overflow-x: hidden;
+  color: white;
+}
+
+/* 🎥 VIDEO DE FONDO */
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* capa para oscurecer un poco el video */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.35);
+  z-index: -1;
 }
 
 h1 {
-  color: #2b6cb0;
-  margin: 20px 0 10px;
+  margin: 20px 0;
 }
 
 .galeria {
@@ -29,13 +54,12 @@ h1 {
 .galeria img {
   width: 100%;
   border-radius: 18px;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.4);
 }
 
 .pregunta {
   font-size: 22px;
   margin: 20px;
-  color: #1a365d;
   min-height: 60px;
 }
 
@@ -69,19 +93,18 @@ button {
   display: none;
   padding: 25px;
   font-size: 18px;
-  color: #2b6cb0;
   line-height: 1.5;
 }
 
-/* corazones flotando */
+/* corazones */
 .heart {
   position: fixed;
   bottom: -20px;
-  font-size: 20px;
-  animation: floatUp 4s linear forwards;
+  font-size: 22px;
+  animation: subir 4s linear forwards;
 }
 
-@keyframes floatUp {
+@keyframes subir {
   from { transform: translateY(0); opacity: 1; }
   to { transform: translateY(-100vh); opacity: 0; }
 }
@@ -90,10 +113,12 @@ button {
 
 <body>
 
-<!-- 🎵 MÚSICA -->
-<audio id="musica" loop>
-  <source src="musica.mp3" type="audio/mpeg">
-</audio>
+<!-- 🎥 VIDEO (pon aquí tu archivo) -->
+<video autoplay muted loop playsinline>
+  <source src="video.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
 
 <h1>Natilla 💙</h1>
 
@@ -124,8 +149,7 @@ button {
   💙✨<br><br>
   Te amo con todo mi corazón.<br>
   Gracias por tanto, cuenta siempre conmigo.<br>
-  Sobre todo en este mes tan especial,<br>
-  así como todos los meses que estoy a tu lado.
+  Hoy, este mes y siempre.
   <br><br>💙✨
 </div>
 
@@ -153,14 +177,11 @@ function moverNo() {
 }
 
 function aceptar() {
-  document.getElementById("musica").play();
-
   document.querySelector(".galeria").style.display = "none";
   document.querySelector(".botones").style.display = "none";
   document.getElementById("texto").style.display = "none";
   document.getElementById("final").style.display = "block";
 
-  // corazones
   setInterval(() => {
     const heart = document.createElement("div");
     heart.className = "heart";
@@ -168,7 +189,7 @@ function aceptar() {
     heart.style.left = Math.random() * 100 + "vw";
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 4000);
-  }, 300);
+  }, 350);
 }
 </script>
 
