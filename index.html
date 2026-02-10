@@ -2,142 +2,166 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<title>Natilla 💙</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Natilla 💙</title>
 
 <style>
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  background: linear-gradient(180deg, #cce7ff, #eaf6ff);
+  background: linear-gradient(180deg, #cfefff, #eaf7ff);
   text-align: center;
-  overflow: hidden;
-}
-
-.container {
-  padding: 20px;
-}
-
-video {
-  width: 100%;
-  max-height: 300px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  overflow-x: hidden;
 }
 
 h1 {
-  color: #2a6fa8;
-  margin-top: 20px;
-  font-size: 1.8em;
+  color: #2b6cb0;
+  margin: 20px 0 10px;
 }
 
-.buttons {
-  margin-top: 30px;
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 15px;
+}
+
+.galeria img {
+  width: 100%;
+  border-radius: 18px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+.pregunta {
+  font-size: 22px;
+  margin: 20px;
+  color: #1a365d;
+  min-height: 60px;
+}
+
+.botones {
+  position: relative;
+  height: 140px;
 }
 
 button {
-  font-size: 1.2em;
-  padding: 12px 25px;
-  border-radius: 30px;
+  padding: 16px 28px;
+  font-size: 18px;
   border: none;
+  border-radius: 40px;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
-#yes {
-  background-color: #4fa3ff;
+#si {
+  background: #63b3ed;
   color: white;
-  font-size: 1.3em;
+  transition: transform 0.3s ease;
 }
 
 #no {
-  background-color: #eeeeee;
-  margin-left: 15px;
+  background: #a0aec0;
+  color: white;
+  position: absolute;
+  right: 20%;
 }
 
+.mensaje-final {
+  display: none;
+  padding: 25px;
+  font-size: 18px;
+  color: #2b6cb0;
+  line-height: 1.5;
+}
+
+/* corazones */
 .heart {
   position: fixed;
-  font-size: 24px;
-  animation: float 4s linear infinite;
+  bottom: -20px;
+  font-size: 20px;
+  animation: floatUp 4s linear forwards;
 }
 
-@keyframes float {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-600px); opacity: 0; }
-}
-
-#letter {
-  display: none;
-  margin-top: 30px;
-  background: white;
-  padding: 20px;
-  border-radius: 20px;
-  color: #2a6fa8;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+@keyframes floatUp {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-100vh); opacity: 0; }
 }
 </style>
 </head>
 
 <body>
-<div class="container">
 
-  <video autoplay loop playsinline>
-    <source src="video.mp4" type="video/mp4">
-  </video>
+<h1>Natilla 💙</h1>
 
-  <h1 id="question">Natilla 💙<br>¿Quieres ser mi San Valentín?</h1>
+<div class="galeria">
+  <img src="nos1.jpg">
+  <img src="nos2.jpg">
+  <img src="nos3.jpg">
+  <img src="nos4.jpg">
+  <img src="nos5.jpg">
+  <img src="nos6.jpg">
+  <img src="pochacco1.jpg">
+  <img src="pochacco2.jpg">
+  <img src="pochacco3.jpg">
+  <img src="pochacco4.jpg">
+  <img src="pochacco5.jpg">
+</div>
 
-  <div class="buttons">
-    <button id="yes" onclick="sayYes()">SÍ 💙</button>
-    <button id="no" onclick="growYes()">NO 🙈</button>
-  </div>
+<div class="pregunta" id="texto">
+  Gordita hermosa… ¿quieres ser mi San Valentín? 💙✨
+</div>
 
-  <div id="letter">
-    <h2>💌 Para ti, Natilla</h2>
-    <p>
-      Te amo con todo mi corazón.  
-      Gracias por tanto, cuenta siempre conmigo.  
-      Sobre todo en este mes tan especial,  
-      así como en todos los meses que estoy a tu lado.
-    </p>
-  </div>
+<div class="botones">
+  <button id="si" onclick="aceptar()">SÍ 💙</button>
+  <button id="no" onmouseover="moverNo()">NO 😅</button>
+</div>
 
+<div class="mensaje-final" id="final">
+  💙✨<br><br>
+  Te amo con todo mi corazón.<br>
+  Gracias por tanto, cuenta siempre conmigo.<br>
+  Sobre todo en este mes tan especial,<br>
+  así como todos los meses que estoy a tu lado.
+  <br><br>💙✨
 </div>
 
 <script>
-let size = 1.3;
-let texts = [
-  "¿Estás segura? 🥺",
-  "No te vas a arrepentir 💙",
-  "Di que sí 😌",
-  "Vamos, solo di sí ✨",
-  "Ya sabes que quieres 💕"
+let escala = 1;
+let frases = [
+  "di que sí xfiii 🥺💙",
+  "amoooorrr 💕",
+  "say yes yes ✨",
+  "gordita hermosa 🥰",
+  "te regalo un abrazo si dices que sí 🤍"
 ];
-let index = 0;
+let i = 0;
 
-function growYes() {
-  size += 0.3;
-  document.getElementById("yes").style.fontSize = size + "em";
+function moverNo() {
+  const no = document.getElementById("no");
+  no.style.top = Math.random() * 90 + "px";
+  no.style.left = Math.random() * 90 + "px";
 
-  document.getElementById("question").innerText = texts[index];
-  index = (index + 1) % texts.length;
+  document.getElementById("texto").innerText = frases[i % frases.length];
+  i++;
+
+  escala += 0.18;
+  document.getElementById("si").style.transform = `scale(${escala})`;
 }
 
-function sayYes() {
-  document.getElementById("question").innerText = "¡Sabía que dirías que sí! 💙✨";
-  document.getElementById("letter").style.display = "block";
+function aceptar() {
+  document.querySelector(".galeria").style.display = "none";
+  document.querySelector(".botones").style.display = "none";
+  document.getElementById("texto").style.display = "none";
+  document.getElementById("final").style.display = "block";
 
-  for (let i = 0; i < 40; i++) {
-    let heart = document.createElement("div");
+  // corazones
+  setInterval(() => {
+    const heart = document.createElement("div");
     heart.className = "heart";
-    heart.innerText = ["💖","💙","✨","🌸"][Math.floor(Math.random()*4)];
-    heart.style.left = Math.random()*100 + "vw";
-    heart.style.bottom = "-20px";
-    heart.style.animationDuration = (Math.random()*2 + 3) + "s";
+    heart.innerText = ["💗","💖","✨","🌸"][Math.floor(Math.random()*4)];
+    heart.style.left = Math.random() * 100 + "vw";
     document.body.appendChild(heart);
-
     setTimeout(() => heart.remove(), 4000);
-  }
+  }, 300);
 }
 </script>
 
